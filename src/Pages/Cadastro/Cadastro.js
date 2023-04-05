@@ -7,85 +7,69 @@ import "./Cadastro.css"
 
 const Cadastro = () => {
   return (
+
     <div>
-      <h2>Seja Bem Vindo</h2>
-      <h3>Cadastre Seu novo cliente:</h3>
 
-      <div className="containerForm">
-
-        <form action="">
-
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">Nome Completo</label>
-            <input type="text" className="form-control" placeholder="Digite seu nome completo" />
-          </div>
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">Email </label>
-            <input type="email" className="form-control" placeholder="name@example.com" />
-          </div>
-
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">Telefone </label>
-            <input type="text" className="form-control" placeholder="(xx)x xxxx-xxxx" />
-          </div>
-
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">CPF </label>
-            <input type="text" className="form-control" placeholder="xxx.xxx.xxx-xx" />
-          </div>
-
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">CEP </label>
-            <input type="text" className="form-control" placeholder="xxx.xxx-xxx" />
-          </div>
-
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">Id </label>
-            <input type="text" className="form-control" />
-          </div>
-
-          <div className="mb-3">
-            <label for="exampleFormControlInput1" className="form-label">Profissão </label>
-            <input type="text" className="form-control" placeholder="Administrador" />
-          </div>
-
-          <h4>Genero</h4>
-          <div className='containerGenero'>
+      <header className='header'>
+        <h2>Seja Bem Vindo</h2 >
+        <h3>Cadastre Seu novo cliente:</h3>
+      </header>
+      <div className='main'>
 
 
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-              <label className="form-check-label" for="flexRadioDefault1">
-                Masculino
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-              <label className="form-check-label" for="flexRadioDefault2">
-                Feminino
-              </label>
-            </div>
-          </div>
-
-
-        </form>
-
-        <div className='containerButton'>
-          <div className="col-12">
-            <button type="button" class="btn btn-success">Salvar</button>
-          </div>
-          <div className="col-12">
-            <button type="button" class="btn btn-secondary">Editar</button>
-          </div>
+        <div className="col-12 btn-novo">
+          <button type="button" class="btn btn-primary">Novo</button>
         </div>
 
+        <div>
+          <table className='tabelaClient'>
+            <thead>
+              <tr>
+                <th>Nome Completo</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>CPF</th>
+                <th>CEP</th>
+                <th>Endereço</th>
+                <th>Cidade</th>
+                <th>Bairro</th>
+                <th>Id</th>
+                <th>Genero</th>
+              </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+          </table>
+          <div className="modal">
+            <div className="modal-content">
+              <header className="modal-header">
+                <h2>Novo Cliente</h2>
+                <span className="modal-close" id="modalClose">&#10006;</span>
+              </header>
+              <form id="form" className="modal-form">
+                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required />
+                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required
+                  size="40" />
+                <input type="text" className="modal-field" placeholder="Telefone do Cliente" required />
+                <input type="email" className="modal-field" placeholder="e-mail" required size="40" />
+                <input type="text" data-index="new" className="modal-field" placeholder="cep" required value="" size="10"
+                  maxlength="9" />
+                <input type="text" className="modal-field" placeholder="Endereço" required size="40" />
+                <input type="text" className="modal-field" placeholder="UF" required size="2" />
+                <input type="text" className="modal-field" placeholder="Cidade" required size="20" />
+                <input type="text" className="modal-field" placeholder="Bairro" required size="20" />
 
-
+              </form>
+              <footer class="modal-footer">
+                <button lassName="button green">Salvar</button>
+                <button className="button blue">Cancelar</button>
+              </footer>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
-
 
   )
 }
