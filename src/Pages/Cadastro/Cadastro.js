@@ -2,7 +2,7 @@ import React from 'react'
 
 
 //css
-<<<<<<< HEAD
+
 import "./Cadastro.css"
 
 const Cadastro = () => {

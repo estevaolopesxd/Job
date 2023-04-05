@@ -5,7 +5,6 @@ import Cadastro from './Pages/Cadastro/Cadastro'
 import Lista from './Pages/Lista/Lista'
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
->>>>>>> 0be191a5b9fa4597f7805c5441ce78015fb592a6
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
           <Route path="/lista" element={<Lista />} />
         </Routes>
       </BrowserRouter>
->>>>>>> 0be191a5b9fa4597f7805c5441ce78015fb592a6
+
     </div>
 
   );
