@@ -19,6 +19,7 @@ const Home = () => {
 
         helloPage.classList.add("d-none")
         homePage.classList.remove("d-none")
+        
     }
 
     return (
