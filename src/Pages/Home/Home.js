@@ -39,20 +39,20 @@ const Home = () => {
                 <h1 className='title text-center mb-5'>Seja Bem Vindo <span id='showName'>{name}</span></h1>
 
                 <div className='btns'>
-                    
-                <h4 className='title mt-5'>O que deseja fazer?</h4>
- 
-                    <div className='campBtn mt-5'>
-                    <Link to='/cadastrar'>
-                        <BtnDefault class={"btn btn-primary mt-2 botao"} type={"button"} value={"Novo Cadastro"} />
-                    </Link>
 
-                    <Link to='/lista'>
-                        <BtnDefault class={"btn btn-primary mt-2 botao"} type={"button"} value={"Ver Lista"} />
-                    </Link>
+                    <h4 className='title mt-5'>O que deseja fazer?</h4>
+
+                    <div className='campBtn mt-5'>
+                        <Link to='/cadastro'>
+                            <BtnDefault class={"btn btn-primary mt-2 botao"} type={"button"} value={"Novo Cadastro"} />
+                        </Link>
+
+                        <Link to='/lista'>
+                            <BtnDefault class={"btn btn-primary mt-2 botao"} type={"button"} value={"Ver Lista"} />
+                        </Link>
                     </div>
-                    
-                   
+
+
 
                 </div>
 

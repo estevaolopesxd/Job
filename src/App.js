@@ -11,10 +11,6 @@ function App() {
     <div className="App">
 
 
-      <Home />
-
-      <Cadastro />
-
 
       <BrowserRouter>
         <Routes>
