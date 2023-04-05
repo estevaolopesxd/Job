@@ -44,11 +44,11 @@ const Home = () => {
 
                     <div className='campBtn mt-5'>
                         <Link to='/cadastro'>
-                            <BtnDefault class={"btn btn-primary mt-2 botao"} type={"button"} value={"Novo Cadastro"} />
+                            <BtnDefault className={"btn btn-primary mt-2 botao"} type={"button"} value={"Novo Cadastro"} />
                         </Link>
 
                         <Link to='/lista'>
-                            <BtnDefault class={"btn btn-primary mt-2 botao"} type={"button"} value={"Ver Lista"} />
+                            <BtnDefault className={"btn btn-primary mt-2 botao"} type={"button"} value={"Ver Lista"} />
                         </Link>
                     </div>
 

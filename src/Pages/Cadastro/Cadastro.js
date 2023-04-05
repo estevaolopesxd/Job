@@ -1,4 +1,5 @@
 import React from 'react'
+import Modal from '../../components/Modal/modal'
 
 //css
 
@@ -18,7 +19,7 @@ const Cadastro = () => {
 
 
         <div className="col-12 btn-novo">
-          <button type="button" class="btn btn-primary">Novo</button>
+          <button type={"button"} className="btn btn-primary" value={"novo"} onClick={Modal}>Novo</button>
         </div>
 
         <div>
@@ -41,32 +42,7 @@ const Cadastro = () => {
 
             </tbody>
           </table>
-          <div className="modal">
-            <div className="modal-content">
-              <header className="modal-header">
-                <h2>Novo Cliente</h2>
-                <span className="modal-close" id="modalClose">&#10006;</span>
-              </header>
-              <form id="form" className="modal-form">
-                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required />
-                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required
-                  size="40" />
-                <input type="text" className="modal-field" placeholder="Telefone do Cliente" required />
-                <input type="email" className="modal-field" placeholder="e-mail" required size="40" />
-                <input type="text" data-index="new" className="modal-field" placeholder="cep" required value="" size="10"
-                  maxlength="9" />
-                <input type="text" className="modal-field" placeholder="Endereço" required size="40" />
-                <input type="text" className="modal-field" placeholder="UF" required size="2" />
-                <input type="text" className="modal-field" placeholder="Cidade" required size="20" />
-                <input type="text" className="modal-field" placeholder="Bairro" required size="20" />
-
-              </form>
-              <footer class="modal-footer">
-                <button lassName="button green">Salvar</button>
-                <button className="button blue">Cancelar</button>
-              </footer>
-            </div>
-          </div>
+          <Modal />
         </div>
       </div>
     </div>
