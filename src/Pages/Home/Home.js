@@ -1,13 +1,16 @@
 import React from 'react'
 
 //css 
-import styles from './Home.modules.css'
+import styles from './Home.css'
+
+// pages
+import Hello from '../Hello/Hello'
 
 const Home = () => {
     return (
         <div>
-            <div className={styles.home}>
-                <h1>Home</h1>
+            <div className='home'>
+                <Hello />
             </div>
 
         </div>
