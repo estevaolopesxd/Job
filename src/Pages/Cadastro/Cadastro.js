@@ -3,7 +3,11 @@ import React from 'react'
 
 
 //css
+<<<<<<< HEAD
 import "./Cadastro.css"
+=======
+import styles from './Cadastro.css'
+>>>>>>> 0be191a5b9fa4597f7805c5441ce78015fb592a6
 
 const Cadastro = () => {
   return (

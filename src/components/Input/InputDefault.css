@@ -1,0 +1,8 @@
+input{
+    border-radius: 6px;
+    width: 400px;
+}
+
+input:focus::placeholder{
+    color: #fff;
+}
