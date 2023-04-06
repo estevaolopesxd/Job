@@ -10,11 +10,7 @@ function App() {
   return (
     <div className="App">
 
-      <Home />
 
-      <Cadastro />
-
-=======
       <BrowserRouter>
         <Routes>
 
