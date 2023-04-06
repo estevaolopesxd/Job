@@ -12,7 +12,19 @@
 
 }
 
+.input{
+    width:450px;
+    border-radius: 8px;
+    
+}
 
+.input::placeholder{
+    text-align: center;
+}
+
+.input:focus::placeholder{
+    color: #FFF;
+}
 
 .btns{
     display: flex;

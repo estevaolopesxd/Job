@@ -1,23 +1,32 @@
-import React from 'react'
+import {React} from 'react'
 
 //css
 
 import "./Cadastro.css"
+import Modal from '../../components/Modal/modal'
+import BtnBack from '../../components/Btn/BtnBack'
 
-const Cadastro = () => {
+
+const Cadastro = () => {  
+    const backClick = (e) => {
+      e.preventDefault()
+    window.location.href = "/"
+  }
+
   return (
 
     <div>
 
+      <BtnBack onclick={backClick}/>
+      
       <header className='header'>
-        <h2>Seja Bem Vindo</h2 >
         <h3>Cadastre Seu novo cliente:</h3>
       </header>
       <div className='main'>
 
 
         <div className="col-12 btn-novo">
-          <button type={"button"} className="btn btn-primary" value={"novo"} onClick={Modal}>Novo</button>
+          <button type={"button"} className="btn btn-primary" value={"novo"} />
         </div>
 
         <div>

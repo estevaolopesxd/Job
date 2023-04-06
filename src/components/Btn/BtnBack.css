@@ -1,0 +1,35 @@
+.BtnBack{
+    display: flex;
+    background-color: red;
+    transition: ease-in-out;
+}
+
+.back{
+    width: 40px;
+    height: 40px;
+    background-color: rgba(214, 235, 235, 0.822);
+    position: absolute;
+    z-index: 5;
+    top: 5%;
+    left: 3%;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    animation: go-back 1s infinite alternate;
+}
+
+.back:hover{
+    transition: transform 1s ease-in-out;
+    color: black;
+    background-color:rgba(214, 235, 235) ;
+    animation: none;
+}
+
+@keyframes go-back {
+    from {
+      transform: translateX(13px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
