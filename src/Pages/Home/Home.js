@@ -1,7 +1,7 @@
-import {React, useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 //css 
-import styles from './Home.css'
 
+import './Home.css'
 // pages
 
 import BtnDefault from '../../components/Btn/BtnDefault'
@@ -11,18 +11,24 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     const helloPage = document.getElementById("hello")
     const homePage = document.getElementById("home")
+    const getName = document.getElementById("getName")
     const [name, setName] = useState("")
 
 
 
-const handleClick = (e) => {
+    const handleClick = (e) => {
         e.preventDefault()
-
-            helloPage.classList.add("d-none")
-            homePage.classList.remove("d-none")
+        helloPage.classList.add("invisible")
+        homePage.classList.remove("d-none")
     }
 
+    useEffect(() => {
 
+        setTimeout(() => {
+            helloPage.classList.add("d-none")
+            homePage.classList.remove("d-none")
+        }, 1000);
+    }, [])
 
     return (
         <div>

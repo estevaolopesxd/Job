@@ -8,6 +8,7 @@ import BtnBack from '../../components/Btn/BtnBack'
 
 
 const Cadastro = () => {  
+  
     const backClick = (e) => {
       e.preventDefault()
     window.location.href = "/"

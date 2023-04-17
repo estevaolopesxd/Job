@@ -1,19 +1,25 @@
 //css
-import styles from './Lista.modules.css'
+import './Lista.css'
 
-import React from 'react'
+import React, { useState } from 'react'
+
+// components
+import BtnBack from '../../components/Btn/BtnBack';
+
 
 const Lista = () => {
   var db = firebase.firestore();
   var minhaColecao = db.collection("form");
+  const [data , setData] = useState([])
 
-  minhaColecao.get().then(function (querySnapshot) {
-    querySnapshot.forEach(function (doc) {
-      var dados = doc.data();
-      // fazer algo com os dados aqui
-    });
-  });
 
+
+  // minhaColecao.get().then(function (querySnapshot) {
+  //   querySnapshot.forEach(function (doc) {
+  //     var dados = doc.data();
+  //     // fazer algo com os dados aqui
+  //   });
+  // });
 
   // Recuperar os dados da coleção
   minhaColecao.get().then(function (querySnapshot) {
@@ -42,7 +48,7 @@ const Lista = () => {
     });
   });
 
-  console.log(db)
+  
 
   // botão voltar
   const backClick = (e) => {
@@ -51,19 +57,44 @@ const Lista = () => {
   }
 
 
-  document.getElementById('recarregar-db').addEventListener('click', function() {
-    // Recupere os dados do banco de dados Firebase
-    db.once('value', function(snapshot) {
-      // Faça algo com os dados
-      console.log(snapshot.val());
-    });
-  });
+  
+ 
 
 
 
 
   return (
-    <div>Lista</div>
+    <div>
+
+      <BtnBack onclick={backClick} />
+
+      <button id='refresh'>
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </button>
+
+      <div className='tab bg-ligth'>
+        <table className="table table-striped-columns table-hover" id="minhaTabela">
+          <thead>
+            <tr>
+
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">CPF</th>
+              <th scope="col">CEP</th>
+              <th scope="col">ID</th>
+              <th scope="col">Profissão</th>
+              <th scope="col">Genero</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   )
 }
 

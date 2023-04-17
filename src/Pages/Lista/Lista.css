@@ -1,0 +1,10 @@
+.tab{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+
+}
+
+th{
+    padding-left: 10px;
+}
