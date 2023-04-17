@@ -12,14 +12,14 @@ const Home = () => {
     const helloPage = document.getElementById("hello")
     const homePage = document.getElementById("home")
     const [name, setName] = useState("")
-    
-    
+
+
 
 const handleClick = (e) => {
         e.preventDefault()
 
-        helloPage.classList.add("d-none")
-        homePage.classList.remove("d-none")
+            helloPage.classList.add("d-none")
+            homePage.classList.remove("d-none")
     }
 
 
