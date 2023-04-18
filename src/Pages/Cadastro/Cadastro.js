@@ -1,41 +1,25 @@
-import React from 'react'
-
+import React, { useState } from 'react';
 
 //css
-
 import "./Cadastro.css"
 
+// import components
 import BtnBack from '../../components/Btn/BtnBack'
 
 
-
 const Cadastro = () => {
-  var db = firebase.firestore();
+
+  const db = firebase.firestore();
   var minhaColecao = db.collection("form");
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // AQUI IMPRIMI OS DADOS DO BANCO -----------------------------
-  
+
   // Recuperar os dados da coleção
   minhaColecao.get().then(function (querySnapshot) {
-    var tabela = document.getElementById("minhaTabela");
+    const tabela = document.getElementById("minhaTabela");
     tabela.innerHTML = "";
     querySnapshot.forEach(function (doc) {
       var dados = doc.data();
@@ -50,7 +34,7 @@ const Cadastro = () => {
       var profissao = novaLinha.insertCell(5)
       var genero = novaLinha.insertCell(6);
       var acao = novaLinha.insertCell(7);
-  
+
       name.innerHTML = dados.name;
       email.innerHTML = dados.email;
       tel.innerHTML = dados.tel;
@@ -66,7 +50,7 @@ const Cadastro = () => {
           <button class="btn btn-danger delete-btn" data-id="${doc.id}"><i class="fa-solid fa-trash"></i></button>
           <button class="btn btn-success" data-id="${doc.id}"><i class="fa-regular fa-pen-to-square"></i></button>
         </div>`;
-  
+
       // Adicionar manipulador de eventos para o botão "delete-btn"
       var deleteBtn = novaLinha.querySelector(".delete-btn");
       deleteBtn.addEventListener("click", function (event) {
@@ -77,11 +61,13 @@ const Cadastro = () => {
         }).catch(function (error) {
           console.error("Erro ao excluir o documento: ", error);
         });
+
+
+
+
       });
     });
   });
-
-
 
 
 
@@ -100,6 +86,29 @@ const Cadastro = () => {
     console.log("refesh...")
   }
   //
+
+
+
+  // API
+  const [cep, setCep] = useState("")
+  fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json())
+    .then(data => {
+      // console.log(data)
+
+
+      const logradouro = document.getElementById("logradouro")
+      const bairro = document.getElementById("bairro")
+      const uf = document.getElementById("uf")
+      const cidade = document.getElementById("cidade")
+
+      logradouro.value = data.logradouro
+      bairro.value = data.bairro
+      uf.value = data.uf
+      cidade.value = data.localidade
+    })
+
+// fim api
+
 
   return (
 
@@ -121,7 +130,7 @@ const Cadastro = () => {
         </button>
 
         <div>
-          <table className='tabelaClient' id="minhaTabela">
+          <table className='tabelaClient' >
             <thead>
               <tr>
                 <th scope="col">Nome</th>
@@ -135,7 +144,7 @@ const Cadastro = () => {
 
               </tr>
             </thead>
-            <tbody>
+            <tbody id="minhaTabela">
 
             </tbody>
           </table>
@@ -151,24 +160,31 @@ const Cadastro = () => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form id="form" className="modal-form">
-              <label>Seu nome completo:</label>
-                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required
+              <form id="formulario" className="modal-form">
+
+                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" name="name" required
                   size="40" />
-                <input type="text" className="modal-field" placeholder="Telefone do Cliente" required />
-                <input type="email" className="modal-field" placeholder="e-mail" required size="40" />
-                <input type="text" data-index="new" className="modal-field" placeholder="cep" required value="" size="10"
-                  maxlength="9" />
-                <input type="text" className="modal-field" placeholder="Endereço" required size="40" />
-                <input type="text" className="modal-field" placeholder="UF" required size="2" />
-                <input type="text" className="modal-field" placeholder="Cidade" required size="20" />
-                <input type="text" className="modal-field" placeholder="Bairro" required size="20" />
+                <input type="text" className="modal-field" placeholder="Telefone do Cliente" name="tel" required />
+                <input type="email" className="modal-field" placeholder="E-mail" required size="40" name='email' />
+                <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10"
+                  maxlength="9" id='cep' name='cep' onChange={(e) => setCep(e.target.value)} value={cep} />
+
+
+                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' />
+                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' />
+                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' />
+                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' />
+
+
+
 
               </form>
+
+
             </div>
             <div className="modal-footer">
-              <button type="button" class="btn btn-primary">Salvar</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" className="btn btn-primary">Salvar</button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
         </div>
