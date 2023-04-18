@@ -28,9 +28,9 @@ const Lista = () => {
     var docRef = firebase.firestore().collection("form").doc(idDocumento);
 
     // Exclua o documento usando o método "delete()"
-    docRef.delete().then(function() {
+    docRef.delete().then(function () {
       console.log("Documento excluído com sucesso!");
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.error("Erro ao excluir o documento: ", error);
     })
   }
