@@ -19,7 +19,6 @@ const Lista = () => {
   //   });
   // });
 
-<<<<<<< HEAD
 
 
   const del = (e) => {
@@ -35,11 +34,6 @@ const Lista = () => {
       console.error("Erro ao excluir o documento: ", error);
     })
   }
-=======
-  const btnDelet = document.getElementById("del")
-  const btnEdit = document.getElementById("edit")
- 
->>>>>>> b2d6a549771f54a09dd7583db3c26a64e29d7b7e
 
 
   // Recuperar os dados da coleção
