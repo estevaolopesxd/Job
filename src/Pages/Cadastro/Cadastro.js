@@ -15,6 +15,21 @@ const Cadastro = () => {
 
 
 
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [tel, setTel] = useState("")
+  const [cpf, setCpf] = useState("")
+  const [rua, setRua] = useState("")
+  const [estado, setEstado] = useState("")
+  const [city, setCity] = useState("")
+  const [local, setLocal] = useState("")
+  const [prof, setProf] = useState("")
+  const [genero, setGenero] = useState("")
+
+
+
+
+
   // AQUI IMPRIMI OS DADOS DO BANCO -----------------------------
 
   // Recuperar os dados da coleção
@@ -96,10 +111,10 @@ const Cadastro = () => {
       // console.log(data)
 
 
-      const logradouro = document.getElementById("logradouro")
-      const bairro = document.getElementById("bairro")
-      const uf = document.getElementById("uf")
-      const cidade = document.getElementById("cidade")
+      var logradouro = document.getElementById("logradouro")
+      var bairro = document.getElementById("bairro")
+      var uf = document.getElementById("uf")
+      var cidade = document.getElementById("cidade")
 
       logradouro.value = data.logradouro
       bairro.value = data.bairro
@@ -107,7 +122,43 @@ const Cadastro = () => {
       cidade.value = data.localidade
     })
 
-// fim api
+  // fim api
+
+
+
+  const handleSubmit = () => {
+    const res = db.collection('form').doc().set(data);
+
+    console.log(res)
+  }
+
+
+
+
+  // CONST QUE ENVIA PARA O BANCO
+
+  const data = {
+    name: name,
+    email: email,
+    tel: tel,
+    cpf: cpf,
+    cep: cep,
+    rua: rua,
+    estado: estado,
+    cidade: city,
+    bairro: local,
+    profissao: prof,
+    genero: genero,
+
+  };
+
+
+
+
+
+
+
+
 
 
   return (
@@ -163,17 +214,19 @@ const Cadastro = () => {
               <form id="formulario" className="modal-form">
 
                 <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" name="name" required
-                  size="40" />
-                <input type="text" className="modal-field" placeholder="Telefone do Cliente" name="tel" required />
-                <input type="email" className="modal-field" placeholder="E-mail" required size="40" name='email' />
-                <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10"
-                  maxlength="9" id='cep' name='cep' onChange={(e) => setCep(e.target.value)} value={cep} />
+                  size="40" onChange={(e) => setName(e.target.value)} value={name} />
+                <input type="text" className="modal-field" placeholder="Telefone do Cliente" name="tel" required onChange={(e) => setTel(e.target.value)} value={tel} />
+                <input type="email" className="modal-field" placeholder="E-mail" required size="40" name='email' onChange={(e) => setEmail(e.target.value)} value={email} />
+                <input type="text" className="modal-field" placeholder="CPF" required size="40" name='cpf' onChange={(e) => setCpf(e.target.value)} value={cpf} />
+                <input type="text" className="modal-field" placeholder="Profissão" required size="40" name='cpf' onChange={(e) => setProf(e.target.value)} value={prof} />
+                <input type="text" className="modal-field" placeholder="Seu Genero" required size="40" name='cpf' onChange={(e) => setGenero(e.target.value)} value={genero} />
+                <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10" maxlength="9" id='cep' name='cep' onChange={(e) => setCep(e.target.value)} value={cep} />
 
 
-                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' />
-                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' />
-                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' />
-                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' />
+                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' onChange={(e) => setRua(e.target.value)} value={rua} />
+                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' onChange={(e) => setEstado(e.target.value)} value={estado} />
+                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' onChange={(e) => setCity(e.target.value)} value={city} />
+                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' onChange={(e) => setLocal(e.target.value)} value={local} />
 
 
 
@@ -183,7 +236,7 @@ const Cadastro = () => {
 
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary">Salvar</button>
+              <button type="button" className="btn btn-primary" onClick={handleSubmit}>Salvar</button>
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
