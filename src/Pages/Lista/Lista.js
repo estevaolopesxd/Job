@@ -19,21 +19,9 @@ const Lista = () => {
   //   });
   // });
 
-
-
-  const del = (e) => {
-    e.preventDefault()
-    var idDocumento = evento.target.dataset.id;
-
-    var docRef = firebase.firestore().collection("form").doc(idDocumento);
-
-    // Exclua o documento usando o método "delete()"
-    docRef.delete().then(function() {
-      console.log("Documento excluído com sucesso!");
-    }).catch(function(error) {
-      console.error("Erro ao excluir o documento: ", error);
-    })
-  }
+  const btnDelet = document.getElementById("del")
+  const btnEdit = document.getElementById("edit")
+ 
 
 
   // Recuperar os dados da coleção
@@ -49,23 +37,28 @@ const Lista = () => {
       var tel = novaLinha.insertCell(2);
       var cpf = novaLinha.insertCell(3);
       var cep = novaLinha.insertCell(4);
-      var id = novaLinha.insertCell(5);
-      var profissao = novaLinha.insertCell(6)
-      var genero = novaLinha.insertCell(7);
-      var acao = novaLinha.insertCell(8);
+      // var id = novaLinha.insertCell(5);
+      var profissao = novaLinha.insertCell(5)
+      var genero = novaLinha.insertCell(6);
+      var acao = novaLinha.insertCell(7);
       name.innerHTML = dados.name;
       email.innerHTML = dados.email;
       tel.innerHTML = dados.tel;
       cpf.innerHTML = dados.cpf;
       cep.innerHTML = dados.cep;
-      id.innerHTML = dados.id;
+      // id.innerHTML = dados.id;
       profissao.innerHTML = dados.profissao;
       genero.innerHTML = dados.genero
-      acao.innerHTML = `<div class="groupBtns"><button class="btn btn-danger" id="del"><i class="fa-solid fa-trash"></i></button> <button id="del" class="btn btn-success" ><i class="fa-regular fa-pen-to-square"></i></button></div>`
+      acao.innerHTML = `<div class="groupBtns"><button class="btn btn-danger" id="del"><i class="fa-solid fa-trash"></i></button> <button id="edit" class="btn btn-success" ><i class="fa-regular fa-pen-to-square"></i></button></div>`
 
     });
   });
 
+// const del = document.getElementById("del")
+
+// del.addEventListener('click' , ()=> {
+//   alert("peguei")
+// })
 
 
   // botão voltar
@@ -87,7 +80,6 @@ const Lista = () => {
 
   return (
     <div>
-      <span className='bg'></span>
       <div className='btns'>
         <BtnBack onclick={backClick} />
 
@@ -108,9 +100,9 @@ const Lista = () => {
               <th scope="col">Telefone</th>
               <th scope="col">CPF</th>
               <th scope="col">CEP</th>
-              <th scope="col">ID</th>
               <th scope="col">Profissão</th>
               <th scope="col">Genero</th>
+
             </tr>
           </thead>
           <tbody>
