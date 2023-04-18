@@ -19,8 +19,6 @@ const Lista = () => {
   //   });
   // });
 
-<<<<<<< HEAD
-
 
   const del = (e) => {
     e.preventDefault()
@@ -35,11 +33,10 @@ const Lista = () => {
       console.error("Erro ao excluir o documento: ", error);
     })
   }
-=======
+
   const btnDelet = document.getElementById("del")
   const btnEdit = document.getElementById("edit")
- 
->>>>>>> b2d6a549771f54a09dd7583db3c26a64e29d7b7e
+
 
 
   // Recuperar os dados da coleção
@@ -72,11 +69,11 @@ const Lista = () => {
     });
   });
 
-// const del = document.getElementById("del")
+  // const del = document.getElementById("del")
 
-// del.addEventListener('click' , ()=> {
-//   alert("peguei")
-// })
+  // del.addEventListener('click' , ()=> {
+  //   alert("peguei")
+  // })
 
 
   // botão voltar

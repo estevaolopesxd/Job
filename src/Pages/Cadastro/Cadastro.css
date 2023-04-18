@@ -36,6 +36,11 @@ h3 {
 .btn {
 	width: 150px;
 	height: 50px;
+	margin: 5px auto;
+}
+
+.btn-primary {
+	margin-right: 5px;
 }
 
 .main {
@@ -76,4 +81,32 @@ h3 {
 
 .tabelaClient tr:hover {
 	background-color: var(--secundary-color);
+}
+
+.modal-form {
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+.modal.show .modal-dialog {
+	transform: none;
+	width: 80%;
+	max-width: 100%;
+}
+
+.modal-footer {
+	display: grid;
+	flex-wrap: wrap;
+	flex-shrink: 0;
+	align-items: end;
+	justify-content: flex-end;
+	padding: 0.75rem;
+	border-top: 1px solid #dee2e6;
+	border-bottom-right-radius: calc(0.3rem - 1px);
+	border-bottom-left-radius: calc(0.3rem - 1px);
+	grid-template-columns: auto auto;
+}
+
+.modal-field {
+	margin: 5px 5px;
+	padding: 10px;
 }

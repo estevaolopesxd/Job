@@ -60,12 +60,11 @@ const Cadastro = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">MCadastrar</h5>
+              <h5 className="modal-title" id="exampleModalLabel">Cadastrar</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form id="form" className="modal-form">
-                <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required />
                 <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" required
                   size="40" />
                 <input type="text" className="modal-field" placeholder="Telefone do Cliente" required />
@@ -80,8 +79,8 @@ const Cadastro = () => {
               </form>
             </div>
             <div className="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
               <button type="button" class="btn btn-primary">Salvar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
         </div>
