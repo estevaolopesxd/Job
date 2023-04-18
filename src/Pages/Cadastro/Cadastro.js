@@ -167,8 +167,8 @@ const Cadastro = () => {
               </form>
             </div>
             <div className="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
               <button type="button" class="btn btn-primary">Salvar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
           </div>
         </div>
