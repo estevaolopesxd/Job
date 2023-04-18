@@ -15,20 +15,21 @@ const Home = () => {
     const [name, setName] = useState("")
 
 
-
     const handleClick = (e) => {
         e.preventDefault()
-        helloPage.classList.add("invisible")
+        helloPage.classList.add("d-none")
         homePage.classList.remove("d-none")
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        setTimeout(() => {
-            helloPage.classList.add("d-none")
-            homePage.classList.remove("d-none")
-        }, 1000);
-    }, [])
+    //     setTimeout(() => {
+    //         helloPage.classList.remove("d-none")
+    //         // homePage.classList.remove("d-none")
+
+    //     }, 1000)
+
+    // }, [])
 
     return (
         <div>
