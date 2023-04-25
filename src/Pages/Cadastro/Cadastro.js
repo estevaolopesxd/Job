@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //css
 import "./Cadastro.css"
@@ -19,27 +19,22 @@ const Cadastro = () => {
   const [email, setEmail] = useState("")
   const [tel, setTel] = useState("")
   const [cpf, setCpf] = useState("")
-  const [rua, setRua] = useState("")
-  const [estado, setEstado] = useState("")
-  const [city, setCity] = useState("")
-  const [local, setLocal] = useState("")
+  const [logradouro, setLogradouro] = useState("")
+  const [uf, setUf] = useState("")
+  const [cidade, setCidade] = useState("")
+  const [bairro, setBairro] = useState("")
   const [prof, setProf] = useState("")
   const [genero, setGenero] = useState("")
   const [nasc, setNasc] = useState("")
   const [mae, setMae] = useState("")
   const [pai, setPai] = useState("")
   const [cep, setCep] = useState("")
+  const [table, setTable] = useState([])
 
 
 
 
   // AQUI IMPRIMI OS DADOS DO BANCO -----------------------------
-
-
-
-
-
-
 
 
   // Recuperar os dados da coleção
@@ -78,7 +73,7 @@ const Cadastro = () => {
 
 
 
-  
+
 
       // Adicionar manipulador de eventos para o botão "delete-btn"
       var deleteBtn = novaLinha.querySelector(".delete-btn");
@@ -86,6 +81,7 @@ const Cadastro = () => {
       deleteBtn.addEventListener("click", function (event) {
         var id = event.target.getAttribute("data-id");
         console.log(event)
+        confirm("Tem certeza que deseja excluir esse documento?")
         db.collection("form").doc(id).delete().then(function () {
           console.log("Documento excluído com sucesso!");
           tabela.deleteRow(novaLinha.rowIndex);
@@ -102,7 +98,8 @@ const Cadastro = () => {
 
 
 
-
+ 
+  
   //botão voltar
   // const backClick = (e) => {
   //   e.preventDefault()
@@ -141,20 +138,14 @@ const Cadastro = () => {
 
   const getcep = (e) => {
     setCep(e.target.value)
-    console.log(cep, e.target.value)
+    // console.log(cep, e.target.value)
     // API
     fetch(`https://viacep.com.br/ws/${e.target.value}/json/`).then(res => res.json())
       .then(data => {
-        // console.log(data)
-        var logradouro = document.getElementById("logradouro")
-        var bairro = document.getElementById("bairro")
-        var uf = document.getElementById("uf")
-        var cidade = document.getElementById("cidade")
-
-        logradouro.value = data.logradouro
-        bairro.value = data.bairro
-        uf.value = data.uf
-        cidade.value = data.localidade
+        setLogradouro(data.logradouro);
+        setBairro(data.bairro)
+        setUf(data.uf);
+        setCidade(data.localidade);
       })
       .catch((e) => {
         console.log(e)
@@ -174,10 +165,10 @@ const Cadastro = () => {
     tel: tel,
     cpf: cpf,
     cep: cep,
-    rua: rua,
-    estado: estado,
-    cidade: city,
-    bairro: local,
+    logradouro: logradouro,
+    estado: uf,
+    cidade: cidade,
+    bairro: bairro,
     profissao: prof,
     genero: genero,
     dataDeNasc: nasc,
@@ -187,11 +178,12 @@ const Cadastro = () => {
   };
 
 
-  return (
 
+  
+
+  return (
     <div>
 
-      {/* <BtnBack onclick={backClick} /> */}
 
       <header className='header'>
         <h3>Cadastre Seu novo cliente:</h3>
@@ -221,9 +213,11 @@ const Cadastro = () => {
 
               </tr>
             </thead>
+
             <tbody id="minhaTabela">
 
             </tbody>
+
           </table>
 
         </div>
@@ -241,6 +235,7 @@ const Cadastro = () => {
 
                 <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" name="name" required
                   size="40" onChange={(e) => setName(e.target.value)} value={name} />
+
                 <input type="tel" className="modal-field" placeholder="Telefone do Cliente" name="tel" required onChange={(e) => setTel(e.target.value)} value={tel} />
                 <input type="email" className="modal-field" placeholder="E-mail" required size="40" name='email' onChange={(e) => setEmail(e.target.value)} value={email} />
                 <input type="text" className="modal-field" placeholder="CPF" required size="40" name='cpf' onChange={(e) => setCpf(e.target.value)} value={cpf} />
@@ -255,14 +250,13 @@ const Cadastro = () => {
                 <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10" id='cep' name='cep' onChange={getcep} value={cep} />
 
 
-                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' onChange={(e) => setRua(e.target.value)} value={rua} />
-                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' onChange={(e) => setEstado(e.target.value)} value={estado} />
-                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' onChange={(e) => setCity(e.target.value)} value={city} />
-                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' onChange={(e) => setLocal(e.target.value)} value={local} />
+                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' onChange={(e) => setLogradouro(e.target.value)} value={logradouro} />
+                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' onChange={(e) => setUf(e.target.value)} value={uf} />
+                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' onChange={(e) => setCidade(e.target.value)} value={cidade} />
+                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' onChange={(e) => setBairro(e.target.value)} value={bairro} />
 
 
               </form>
-
 
             </div>
             <div className="modal-footer">
