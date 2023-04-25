@@ -14,9 +14,9 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={<Home />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/lista" element={<Lista />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Cadastro />} />
+          {/* <Route path="/lista" element={<Lista />} /> */}
         </Routes>
       </BrowserRouter>
 

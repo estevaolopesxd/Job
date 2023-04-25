@@ -2,7 +2,7 @@
 
 :root {
 	--primary-color: #b700ff;
-	--secundary-color: #fff1cc;
+	--secundary-color: #e3eff3;
 	--shadow-color: #ccc;
 	--text-color: #fff;
 }
@@ -109,4 +109,9 @@ h3 {
 .modal-field {
 	margin: 5px 5px;
 	padding: 10px;
+}
+
+
+.hide{
+	display: none;
 }

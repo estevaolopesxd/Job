@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import "./Cadastro.css"
 
 // import components
-import BtnBack from '../../components/Btn/BtnBack'
+// import BtnBack from '../../components/Btn/BtnBack'
 
 
 const Cadastro = () => {
@@ -25,12 +25,22 @@ const Cadastro = () => {
   const [local, setLocal] = useState("")
   const [prof, setProf] = useState("")
   const [genero, setGenero] = useState("")
-
+  const [nasc, setNasc] = useState("")
+  const [mae, setMae] = useState("")
+  const [pai, setPai] = useState("")
+  const [cep, setCep] = useState("")
 
 
 
 
   // AQUI IMPRIMI OS DADOS DO BANCO -----------------------------
+
+
+
+
+
+
+
 
   // Recuperar os dados da coleção
   minhaColecao.get().then(function (querySnapshot) {
@@ -70,6 +80,7 @@ const Cadastro = () => {
       var deleteBtn = novaLinha.querySelector(".delete-btn");
       deleteBtn.addEventListener("click", function (event) {
         var id = event.target.getAttribute("data-id");
+        confirm("Tem certeza que deseja excluir o documento?")
         db.collection("form").doc(id).delete().then(function () {
           console.log("Documento excluído com sucesso!");
           tabela.deleteRow(novaLinha.rowIndex);
@@ -88,10 +99,10 @@ const Cadastro = () => {
 
 
   //botão voltar
-  const backClick = (e) => {
-    e.preventDefault()
-    window.location.href = "/"
-  }
+  // const backClick = (e) => {
+  //   e.preventDefault()
+  //   window.location.href = "/"
+  // }
 
   //
   // botão recarregar
@@ -103,34 +114,45 @@ const Cadastro = () => {
   //
 
 
-
   // API
-  const [cep, setCep] = useState("")
   fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json())
     .then(data => {
       // console.log(data)
 
 
-      var logradouro = document.getElementById("logradouro")
-      var bairro = document.getElementById("bairro")
-      var uf = document.getElementById("uf")
-      var cidade = document.getElementById("cidade")
+      const logradouro = document.getElementById("logradouro")
+      const bairro = document.getElementById("bairro")
+      const uf = document.getElementById("uf")
+      const cidade = document.getElementById("cidade")
 
       logradouro.value = data.logradouro
       bairro.value = data.bairro
       uf.value = data.uf
       cidade.value = data.localidade
     })
-
   // fim api
 
 
-
+  const meuModal = document.getElementById("exampleModal")
+console.log(meuModal)
   const handleSubmit = () => {
-    const res = db.collection('form').doc().set(data);
 
-    console.log(res)
+   
+  if(name === "" || tel === "" || email === "" || cpf === "" || prof === "" || genero === "" || nasc === "" || mae === "" || pai === "" || cep === "" ){
+    alert("Por favor todos os campos")
+
+  } else{
+    let tabela = document.getElementById("minhaTabela")
+    const res = db.collection('form').doc().set(data);
+    tabela.innerHTML = ""
+
+    const botaoFechar = document.querySelector('#exampleModal .btn-primary');
+    botaoFechar.setAttribute('data-bs-dismiss', 'modal');
   }
+  window.location.reload()
+
+  }
+  
 
 
 
@@ -149,6 +171,9 @@ const Cadastro = () => {
     bairro: local,
     profissao: prof,
     genero: genero,
+    dataDeNasc: nasc,
+    nomeDaMae: mae,
+    nomeDoPai: pai,
 
   };
 
@@ -156,7 +181,7 @@ const Cadastro = () => {
 
 
 
-
+ 
 
 
 
@@ -165,7 +190,7 @@ const Cadastro = () => {
 
     <div>
 
-      <BtnBack onclick={backClick} />
+      {/* <BtnBack onclick={backClick} /> */}
 
       <header className='header'>
         <h3>Cadastre Seu novo cliente:</h3>
@@ -215,20 +240,24 @@ const Cadastro = () => {
 
                 <input type="text" data-index="new" className="modal-field" placeholder="Nome Completo" name="name" required
                   size="40" onChange={(e) => setName(e.target.value)} value={name} />
-                <input type="text" className="modal-field" placeholder="Telefone do Cliente" name="tel" required onChange={(e) => setTel(e.target.value)} value={tel} />
+                <input type="tel" className="modal-field" placeholder="Telefone do Cliente" name="tel" required onChange={(e) => setTel(e.target.value)} value={tel} />
                 <input type="email" className="modal-field" placeholder="E-mail" required size="40" name='email' onChange={(e) => setEmail(e.target.value)} value={email} />
                 <input type="text" className="modal-field" placeholder="CPF" required size="40" name='cpf' onChange={(e) => setCpf(e.target.value)} value={cpf} />
                 <input type="text" className="modal-field" placeholder="Profissão" required size="40" name='cpf' onChange={(e) => setProf(e.target.value)} value={prof} />
                 <input type="text" className="modal-field" placeholder="Seu Genero" required size="40" name='cpf' onChange={(e) => setGenero(e.target.value)} value={genero} />
+                <input type="text" className="modal-field" placeholder="Data de Nascimento" required size="40" name='nascimento' onChange={(e) => setNasc(e.target.value)} value={nasc} />
+                <input type="text" className="modal-field" placeholder="Nome da Mãe" required size="40" name='mae' onChange={(e) => setMae(e.target.value)} value={mae} />
+                <input type="text" className="modal-field" placeholder="Nome do Pai" required size="40" name='pai' onChange={(e) => setPai(e.target.value)} value={pai} />
+
+
+
                 <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10" maxlength="9" id='cep' name='cep' onChange={(e) => setCep(e.target.value)} value={cep} />
 
 
-                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' onChange={(e) => setRua(e.target.value)} value={rua} />
-                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' onChange={(e) => setEstado(e.target.value)} value={estado} />
-                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' onChange={(e) => setCity(e.target.value)} value={city} />
-                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' onChange={(e) => setLocal(e.target.value)} value={local} />
-
-
+                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro'  value={rua} />
+                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf'  value={estado} />
+                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade'  value={city} />
+                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro'  value={local} />
 
 
               </form>
