@@ -72,15 +72,20 @@ const Cadastro = () => {
       // BOTÕES AÇÃO EXCLUIR E EDITAR ----------------------------------------------
       acao.innerHTML = `
         <div class="groupBtns">
-          <button class="btn btn-danger delete-btn" data-id="${doc.id}"><i class="fa-solid fa-trash"></i></button>
-          <button class="btn btn-success" data-id="${doc.id}"><i class="fa-regular fa-pen-to-square"></i></button>
+          <button class="btn btn-danger delete-btn" data-id="${doc.id}"><i class="fa-solid fa-trash" data-id="${doc.id}"></i></button>
+          <button class="btn btn-success" data-id="${doc.id}"><i class="fa-regular fa-pen-to-square" data-id="${doc.id}"></i></button>
         </div>`;
+
+
+
+  
 
       // Adicionar manipulador de eventos para o botão "delete-btn"
       var deleteBtn = novaLinha.querySelector(".delete-btn");
+
       deleteBtn.addEventListener("click", function (event) {
         var id = event.target.getAttribute("data-id");
-        confirm("Tem certeza que deseja excluir o documento?")
+        console.log(event)
         db.collection("form").doc(id).delete().then(function () {
           console.log("Documento excluído com sucesso!");
           tabela.deleteRow(novaLinha.rowIndex);
@@ -114,46 +119,50 @@ const Cadastro = () => {
   //
 
 
-  // API
-  fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json())
-    .then(data => {
-      // console.log(data)
 
 
-      const logradouro = document.getElementById("logradouro")
-      const bairro = document.getElementById("bairro")
-      const uf = document.getElementById("uf")
-      const cidade = document.getElementById("cidade")
-
-      logradouro.value = data.logradouro
-      bairro.value = data.bairro
-      uf.value = data.uf
-      cidade.value = data.localidade
-    })
-  // fim api
-
-
-  const meuModal = document.getElementById("exampleModal")
-console.log(meuModal)
   const handleSubmit = () => {
 
-   
-  if(name === "" || tel === "" || email === "" || cpf === "" || prof === "" || genero === "" || nasc === "" || mae === "" || pai === "" || cep === "" ){
-    alert("Por favor todos os campos")
 
-  } else{
-    let tabela = document.getElementById("minhaTabela")
-    const res = db.collection('form').doc().set(data);
-    tabela.innerHTML = ""
+    if (name === "" || tel === "" || email === "" || cpf === "" || prof === "" || genero === "" || nasc === "" || mae === "" || pai === "" || cep === "") {
+      alert("Por favor preencha todos os campos")
 
-    const botaoFechar = document.querySelector('#exampleModal .btn-primary');
-    botaoFechar.setAttribute('data-bs-dismiss', 'modal');
+    } else {
+      let tabela = document.getElementById("minhaTabela")
+      const res = db.collection('form').doc().set(data);
+      tabela.innerHTML = ""
+
+      const botaoFechar = document.querySelector('#exampleModal .btn-primary');
+      botaoFechar.setAttribute('data-bs-dismiss', 'modal');
+    }
+    // window.location.reload()
+
   }
-  window.location.reload()
+
+  const getcep = (e) => {
+    setCep(e.target.value)
+    console.log(cep, e.target.value)
+    // API
+    fetch(`https://viacep.com.br/ws/${e.target.value}/json/`).then(res => res.json())
+      .then(data => {
+        // console.log(data)
+        var logradouro = document.getElementById("logradouro")
+        var bairro = document.getElementById("bairro")
+        var uf = document.getElementById("uf")
+        var cidade = document.getElementById("cidade")
+
+        logradouro.value = data.logradouro
+        bairro.value = data.bairro
+        uf.value = data.uf
+        cidade.value = data.localidade
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+
+    // fim api
 
   }
-  
-
 
 
 
@@ -178,14 +187,6 @@ console.log(meuModal)
   };
 
 
-
-
-
- 
-
-
-
-
   return (
 
     <div>
@@ -202,7 +203,7 @@ console.log(meuModal)
         </button>
 
         <button id='refresh' onClick={refresh}>
-          <i class="fa-solid fa-arrows-rotate"></i>
+          <i className="fa-solid fa-arrows-rotate"></i>
         </button>
 
         <div>
@@ -228,7 +229,7 @@ console.log(meuModal)
         </div>
       </div>
 
-      <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -251,13 +252,13 @@ console.log(meuModal)
 
 
 
-                <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10" maxlength="9" id='cep' name='cep' onChange={(e) => setCep(e.target.value)} value={cep} />
+                <input type="text" data-index="new" className="modal-field" placeholder="Cep" required size="10" id='cep' name='cep' onChange={getcep} value={cep} />
 
 
-                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro'  value={rua} />
-                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf'  value={estado} />
-                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade'  value={city} />
-                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro'  value={local} />
+                <input type="text" className="modal-field" placeholder="Endereço" required size="40" name='endereco' id='logradouro' onChange={(e) => setRua(e.target.value)} value={rua} />
+                <input type="text" className="modal-field" placeholder="UF" required size="2" name='uf' id='uf' onChange={(e) => setEstado(e.target.value)} value={estado} />
+                <input type="text" className="modal-field" placeholder="Cidade" required size="20" name='cidade' id='cidade' onChange={(e) => setCity(e.target.value)} value={city} />
+                <input type="text" className="modal-field" placeholder="Bairro" required size="20" name='bairro' id='bairro' onChange={(e) => setLocal(e.target.value)} value={local} />
 
 
               </form>

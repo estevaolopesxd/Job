@@ -1,7 +1,7 @@
 /** @format */
 
 :root {
-	--primary-color: #b700ff;
+	--primary-color: #d1e4ff;
 	--secundary-color: #e3eff3;
 	--shadow-color: #ccc;
 	--text-color: #fff;
@@ -10,7 +10,7 @@
 .header {
 	width: 100%;
 	height: 150px;
-	background-color: rgb(111, 104, 104);
+	background-color: rgb(194, 189, 189);
 	box-shadow: 2px 0px 10px 10px black;
 	margin: 0px auto;
 	position: relative;
